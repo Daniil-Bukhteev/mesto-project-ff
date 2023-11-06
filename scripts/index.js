@@ -9,16 +9,16 @@ function createCard(card, deleteCard) {
 	const cardDeleteButton = cardElement.querySelector('.card__delete-button');
 	cardTitle.textContent = card.name;
 	cardImage.src = card.link;
-	cardDeleteButton.addEventListener('click', deleteCard)
+	cardImage.alt = card.name;
+	cardDeleteButton.addEventListener('click', deleteCard);
 	return cardElement;
 }
 // @todo: Функция удаления карточки
-function deleteCard(cardElement) {
-	const delCard = cardElement.target.closest('.card');
-	delCard.remove();
+function deleteCard (deleteItem) {
+	deleteItem.target.closest('.card').remove();
 }
 // @todo: Вывести карточки на страницу
 initialCards.forEach((card) => {
-		const cards = createCard(card, deleteCard);
-		placesList.append(cards);
-	})
+	const cards = createCard(card, deleteCard);
+	placesList.append(cards);
+})
