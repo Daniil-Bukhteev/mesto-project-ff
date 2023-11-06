@@ -20,8 +20,8 @@ function createCard(card, deleteCard) {
 
 
 // @todo: Функция удаления карточки
-function deleteCard (deleteItem) {
-	deleteItem.target.closest('.card').remove();
+function deleteCard (event) {
+	event.target.closest('.card').remove();
 }
 
 
