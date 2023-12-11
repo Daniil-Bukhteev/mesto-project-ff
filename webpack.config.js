@@ -9,7 +9,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: '[name][ext]',
     filename: 'main.js',
     publicPath: '',
   },
@@ -24,7 +23,7 @@ module.exports = {
     rules: [{
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: '/node_modules/'
+        exclude: '/node_modules/',
       },
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,

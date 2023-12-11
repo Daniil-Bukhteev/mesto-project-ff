@@ -37,13 +37,13 @@ function createCard(card, deleteCard) {
 	const cardTitle = cardElement.querySelector('.card__title');
 	const cardImage = cardElement.querySelector('.card__image');
 	const cardDeleteButton = cardElement.querySelector('.card__delete-button');
-	const likeButtons = document.querySelectorAll('.card__like-button');
+	const likeButtons = cardElement.querySelector('.card__like-button');
 	cardImage.addEventListener('click', openFullImage);
 	cardTitle.textContent = card.name;
 	cardImage.src = card.link;
 	cardImage.alt = card.name;
 	cardDeleteButton.addEventListener('click', deleteCard);
-	likeButtons.forEach((evt) => {evt.addEventListener('click', likeCard)});
+	likeButtons.addEventListener('click', likeCard);
 	return cardElement;
 }
 

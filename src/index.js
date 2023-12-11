@@ -1,7 +1,7 @@
 import '../src/index.css';
 import { initialCards, deleteCard, createCard} from './cards';
 import { openModal, closeModal, handleFormSubmit, handleNewCardAdd } from './modals';
-export {popups, inputTitle, inputDescription, profileDescription, profileTitle, popupTypeImage, popupImage, popupCaption, placesList, popupNewCard }
+export {popups, inputTitle, inputDescription, profileDescription, profileTitle, popupTypeImage, popupImage, popupCaption, placesList, popupNewCard, imgNameInput, linkInput }
 
 const popups = document.querySelectorAll('.popup');
 const profileTitle = document.querySelector('.profile__title');
@@ -17,6 +17,8 @@ const popupNewCard = document.querySelector('.popup_type_new-card');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addProfileButton = document.querySelector('.profile__add-button');
 const buttonClose = document.querySelectorAll('.popup__close');
+const imgNameInput = document.querySelector('.popup__input_type_card-name');
+const linkInput = document.querySelector('.popup__input_type_url');
 
 initialCards.forEach((card) => {
 	const cards = createCard(card, deleteCard);
@@ -34,9 +36,6 @@ buttonEditProfile.addEventListener('click', function () {
 })
 
 addProfileButton.addEventListener('click', function () {
-	popupImage.src = '';
-	popupImage.alt = '';
-	popupCaption.textContent = '';
 	openModal(popupNewCard);
 })
 

@@ -1,7 +1,7 @@
 
 export {openModal, closeModal, handleFormSubmit, openFullImage, handleNewCardAdd, inputTitle, inputDescription, profileDescription, profileTitle};
 
-import {popups, inputTitle, inputDescription, profileDescription, profileTitle, popupTypeImage, popupImage, popupCaption, popupNewCard } from './index';
+import {popups, inputTitle, inputDescription, profileDescription, profileTitle, popupTypeImage, popupImage, popupCaption, popupNewCard, imgNameInput, linkInput } from './index';
 
 import { createCard, deleteCard, likeCard, placesList } from './cards';
 
@@ -51,15 +51,12 @@ function openFullImage (evt) {
 
 function handleNewCardAdd (evt) {
 	evt.preventDefault();
-	const imgNameInput = document.querySelector('.popup__input_type_card-name');
-	const linkInput = document.querySelector('.popup__input_type_url');
 	const cards = {
 		name: imgNameInput.value,
 		link: linkInput.value,
 	};
 	const newCard = createCard(cards, deleteCard, likeCard, openFullImage);
 	placesList.prepend(newCard);
-
 	closeModal(popupNewCard);
 	imgNameInput.value = '';
 	linkInput.value = '';
