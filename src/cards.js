@@ -24,3 +24,34 @@ const initialCards = [
       link: 'https://images.unsplash.com/photo-1697647753520-fb49c78ba64f?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }
 ];
+
+import { placesList } from "./index";
+
+import { openFullImage } from "./modals";
+
+export {initialCards, createCard, deleteCard, likeCard, placesList }
+
+function createCard(card, deleteCard) {
+  const cardTemplate = document.querySelector("#card-template").content;
+	const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
+	const cardTitle = cardElement.querySelector('.card__title');
+	const cardImage = cardElement.querySelector('.card__image');
+	const cardDeleteButton = cardElement.querySelector('.card__delete-button');
+	const likeButtons = document.querySelectorAll('.card__like-button');
+	cardImage.addEventListener('click', openFullImage);
+	cardTitle.textContent = card.name;
+	cardImage.src = card.link;
+	cardImage.alt = card.name;
+	cardDeleteButton.addEventListener('click', deleteCard);
+	likeButtons.forEach((evt) => {evt.addEventListener('click', likeCard)});
+	return cardElement;
+}
+
+function deleteCard(event) {
+	event.target.closest('.card').remove();
+}
+
+function likeCard (evt) {
+	evt.target.classList.toggle('card__like-button_is-active');
+
+}
