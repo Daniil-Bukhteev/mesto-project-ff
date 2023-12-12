@@ -20,30 +20,30 @@ const initialCards = [
       link: 'https://images.unsplash.com/photo-1698970992928-102b3f3cea9a?auto=format&fit=crop&q=80&w=1964&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
-      name: '2000$ за сигарету',
-      link: 'https://images.unsplash.com/photo-1697647753520-fb49c78ba64f?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      name: '2024',
+      link: 'https://images.unsplash.com/photo-1702274397667-14596faf1cd1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }
 ];
-
-import { placesList } from "./index";
 
 import { openFullImage } from "./modals";
 
 export {initialCards, createCard, deleteCard, likeCard, placesList }
 
-function createCard(card, deleteCard) {
+const placesList = document.querySelector(".places__list");
+
+function createCard(card, deleteCard, openFullImage, likeCard) {
   const cardTemplate = document.querySelector("#card-template").content;
 	const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
 	const cardTitle = cardElement.querySelector('.card__title');
 	const cardImage = cardElement.querySelector('.card__image');
 	const cardDeleteButton = cardElement.querySelector('.card__delete-button');
-	const likeButtons = cardElement.querySelector('.card__like-button');
-	cardImage.addEventListener('click', openFullImage);
-	cardTitle.textContent = card.name;
+	const likeButton = cardElement.querySelector('.card__like-button');
+  cardTitle.textContent = card.name;
 	cardImage.src = card.link;
 	cardImage.alt = card.name;
+	cardImage.addEventListener('click', openFullImage);
 	cardDeleteButton.addEventListener('click', deleteCard);
-	likeButtons.addEventListener('click', likeCard);
+	likeButton.addEventListener('click', likeCard);
 	return cardElement;
 }
 
