@@ -27,9 +27,9 @@ const initialCards = [
 
 import { openFullImage } from "./modals";
 
-export {initialCards, createCard, deleteCard, likeCard, placesList }
-
 const placesList = document.querySelector(".places__list");
+
+export {initialCards, createCard, deleteCard, likeCard, placesList };
 
 function createCard(card, deleteCard, openFullImage, likeCard) {
   const cardTemplate = document.querySelector("#card-template").content;

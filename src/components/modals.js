@@ -1,5 +1,4 @@
 
-export {openModal, closeModal, handleProfileFormSubmit, openFullImage, handleNewCardAdd, inputTitle, inputDescription, profileDescription, profileTitle, popups,popupTypeImage, popupImage, popupCaption, popupNewCard, imgNameInput, linkInput };
 
 import { createCard, deleteCard, likeCard, placesList } from './cards';
 
@@ -14,6 +13,9 @@ const popupCaption  = document.querySelector('.popup__caption');
 const popupNewCard = document.querySelector('.popup_type_new-card');
 const imgNameInput = document.querySelector('.popup__input_type_card-name');
 const linkInput = document.querySelector('.popup__input_type_url');
+
+export {openModal, closeModal, handleProfileFormSubmit, openFullImage, handleNewCardAdd, inputTitle, inputDescription, profileDescription, profileTitle, popups,popupTypeImage, popupImage, popupCaption, popupNewCard, imgNameInput, linkInput };
+
 
 function openModal(pop) {
   pop.classList.add("popup_is-animated");
@@ -33,7 +35,6 @@ function closeModal() {
 			}, 600);
 		document.removeEventListener('keydown', closeByEsc);
 		pop.removeEventListener('click', closeByOverley);
-		pop.removeEventListener('click', openModal);
 	} else return null;
 	})
 }
