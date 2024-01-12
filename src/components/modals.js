@@ -12,7 +12,8 @@ import {
 	buttonEditProfile,
 	popupEditProfile,
 	newCardForm,
-	buttonNewCard
+	buttonNewCard,
+	userId
 } from './index';
 import {
 	clearValidation,
@@ -88,8 +89,8 @@ function handleProfileFormSubmit(evt) {
 	evt.preventDefault();
 	saveProfile.textContent = saveProfile.getAttribute('data-load');
 	editUserDataset(inputTitle.value, inputDescription.value).then((profileData) => {
-		inputTitle.textContent = profileData.name;
-		inputDescription.textContent = profileData.about;
+		profileTitle.textContent = profileData.name;
+		profileDescription.textContent = profileData.about;
 		closeModal(popupEditProfile);
 	}).catch((error) => console.log("ошибка", error)).finally(() => (saveProfile.textContent = saveProfile.getAttribute('data-text')));
 	clearValidation(popupEditProfile, validationConfig);
@@ -105,8 +106,8 @@ function openFullImage(evt) {
 function handleNewCardAdd(evt) {
 	evt.preventDefault();
 	saveCard.textContent = saveCard.getAttribute('data-load');
-	addCard(imgNameInput.value, linkInput.value).then((card) => {
-		const newCard = createCard(card, deleteMyCard, openFullImage, likeCard);
+	addCard(imgNameInput.value, linkInput.value).then((cards) => {
+		const newCard = createCard(cards, userId, deleteMyCard, openFullImage, likeCard);
 		placesList.prepend(newCard);
 		closeModal(popupNewCard);
 		evt.target.reset();

@@ -27,6 +27,7 @@ import {
 	deleteLike
 } from "./api";
 const placesList = document.querySelector(".places__list");
+
 export {
 	createCard,
 	deleteMyCard,
@@ -48,22 +49,27 @@ function createCard(cards, userId, deleteMyCard, openFullImage, likeCard) {
 	cardLikeCount.textContent = cards.likes.length;
 	cardImage.addEventListener('click', openFullImage);
 	cardElement.id = cards["_id"];
-	if(userId !== cards.owner["_id"]) {
-		cardDeleteButton.remove();
-	} else {
+
+	if(cards.owner["_id"] === userId) {
 		cardDeleteButton.addEventListener("click", () => {
 			deleteMyCard(cardElement.id, cardElement);
 		});
+		
+	} else {cardDeleteButton.remove();
+		console.log("test1")
 	}
+
 	const checkLike = cards.likes.some((like) => like._id === userId);
 	if(checkLike) {
 		likeButton.classList.add('card__like-button_is-active')
 	}
 	likeButton.addEventListener('click', (evt) => {
-		likeCard(evt, cards._id, cardElement)
+		likeCard(evt, cards._id, cardLikeCount)
 	});
 	return cardElement;
 }
+
+
 
 function deleteMyCard(cardId, cardElement) {
 	deleteCard(cardId).then(() => {
@@ -73,17 +79,16 @@ function deleteMyCard(cardId, cardElement) {
 	});
 };
 
-function likeCard(evt, cardId, cardElement) {
-	const carrentLike = cardElement.querySelector('.card__like-count')
+function likeCard(evt, cardId, cardLikeCount) {
 	if(evt.target.classList.contains('card__like-button_is-active')) {
 		deleteLike(cardId).then((card) => {
 			evt.target.classList.remove('card__like-button_is-active');
-			carrentLike.textContent = card.likes.length;
+			cardLikeCount.textContent = card.likes.length;
 		}).catch((error) => console.log("ошибка", error));
 	} else {
 		putLike(cardId).then((card) => {
 			evt.target.classList.add('card__like-button_is-active');
-			carrentLike.textContent = card.likes.length;
+			cardLikeCount.textContent = card.likes.length;
 		}).catch((error) => console.log("ошибка", error));
 	}
 };

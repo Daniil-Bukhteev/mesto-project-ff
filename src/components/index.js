@@ -46,7 +46,7 @@ const popupAvatar = document.querySelector('.popup_type_avatar');
 const profileImage = document.querySelector(".profile__image");
 const avatarEditButton = document.querySelector('.profile__container');
 const saveAvatar = popupAvatar.querySelector('.popup__button');
-let userId = '';
+export let userId = '';
 enableValidation(validationConfig);
 Promise.all([getUserData(), getInitialCards()]).then(([profileData, cardsData]) => {
 	profileTitle.textContent = profileData.name;
