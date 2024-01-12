@@ -79,15 +79,11 @@ function likeCard(evt, cardId, cardElement) {
 		deleteLike(cardId).then((card) => {
 			evt.target.classList.remove('card__like-button_is-active');
 			carrentLike.textContent = card.likes.length;
-		}).catch((err) => {
-			console.log(err)
-		});
+		}).catch((error) => console.log("ошибка", error));
 	} else {
 		putLike(cardId).then((card) => {
 			evt.target.classList.add('card__like-button_is-active');
 			carrentLike.textContent = card.likes.length;
-		}).catch((err) => {
-			console.log(err)
-		});
+		}).catch((error) => console.log("ошибка", error));
 	}
 };
